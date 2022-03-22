@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Navbar />
+    <div class="divider"></div>
+    <Subnavbar />
     <router-view />
   </div>
 </template>
+
+<script>
+import Navbar from "@/components/Navbar";
+import Subnavbar from "@/components/Subnavbar";
+
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    Subnavbar
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 #app {
@@ -17,16 +29,8 @@
   color: $secondary-color;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: $secondary-color;
-}
-
-#nav a.router-link-exact-active {
-  color: $primary-color;
+.divider {
+  width: 100%;
+  height: 0.5px;
 }
 </style>
