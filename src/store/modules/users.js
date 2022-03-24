@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getApiUrl } from "@/api/getApiUrl";
 
 export default {
   namespaced: true,
@@ -21,13 +22,14 @@ export default {
   },
   actions: {
     async getUsers({ commit }) {
+      let apiUrl = await getApiUrl();
       let params = {
         offset: 0,
         limit: 100
       };
       try {
         let response = await axios.get(
-          process.env.VUE_APP_BACK_ROUTE + `users/`,
+          apiUrl + `users/`,
           {
             params: params
           }
@@ -42,9 +44,10 @@ export default {
       }
     },
     async getUserInfo({ commit }, userId) {
+      let apiUrl = await getApiUrl();
       try {
         let response = await axios.get(
-          process.env.VUE_APP_BACK_ROUTE + `users/${userId}`
+          apiUrl + `users/${userId}`
         );
         if (response.status == 200) {
           commit("setUserInfo", response.data);

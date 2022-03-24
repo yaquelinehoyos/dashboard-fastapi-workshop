@@ -55,9 +55,9 @@ export default {
 
     &__item {
         width: 100%;
-        border: 1px solid $secondary-color;
+        border: 0.5px solid #D1D1D1;
         border-radius: 5px;
-        padding: 5px;
+        padding: 10px;
         margin-bottom: 10px;
     }
 

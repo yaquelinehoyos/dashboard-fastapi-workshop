@@ -1,16 +1,33 @@
 <template>
     <div class="navbar">
         <h4 class="navbar__title">Dashboard <b>FastAPI</b> Workshop</h4>
-        <section>
-            <input 
-                class="navbar__input-token"
-                type="text" 
-                placeholder="token" 
-                v-model="token" 
-                v-on:keyup.enter="setToken"
-            />
-            <button id="tokenInput" class="navbar__button-set-token" @click="setToken">Set token</button>
-        </section>
+        <b-dropdown id="dropdown-form" dropleft ref="dropdown" text="Set data">
+            <b-dropdown-form>
+                <b-form-group>
+                    <b-form-input
+                        class="navbar__input"
+                        id="tokenInput"
+                        placeholder="token"
+                        v-model="token" 
+                        v-on:keyup.enter="setToken"
+                    ></b-form-input>
+                    <button class="navbar__button-set-token" @click="setToken">Set token</button>
+                </b-form-group>
+
+                <b-dropdown-divider></b-dropdown-divider>
+
+                <b-form-group>
+                    <b-form-input
+                        class="navbar__input"
+                        id="apiUrlInput"
+                        placeholder="http://127.0.0.0:8000/" 
+                        v-model="apiUrl"
+                        v-on:keyup.enter="setApiUrl"
+                    ></b-form-input>
+                    <button class="navbar__button-set-token" @click="setApiUrl">Set API URL</button>
+                </b-form-group>
+            </b-dropdown-form>
+        </b-dropdown>
     </div>
 </template>
 
@@ -19,18 +36,27 @@ export default {
     name: "Navbar",
     data() {
         return {
-            token: null
+            token: null,
+            apiUrl: null
         }
     },
     created() {
         this.token = localStorage.getItem("workshop-fastapi");
+        this.apiUrl = localStorage.getItem("workshop-fastapi-api-url");
     },
     methods: {
         setToken() {
             if(this.token != null && this.token != "") {
                 localStorage.setItem("workshop-fastapi", this.token);
             }
-            document.getElementById("tokenInput").focus();
+            document.getElementById("tokenInput").blur();
+            location.reload();
+        },
+        setApiUrl() {
+            if(this.apiUrl != null && this.apiUrl != "") {
+                localStorage.setItem("workshop-fastapi-api-url", this.apiUrl);
+            }
+            document.getElementById("apiUrlInput").blur();
             location.reload();
         }
     }
@@ -47,16 +73,19 @@ export default {
         color: $primary-color;
     }
 
-    &__input-token {
-        border-radius: 5px;
-        outline: none;
-        border: none;
-        padding: 5px;
-        margin-right: 10px;
+    &__input {
+        width: 200px;
     }
 
     &__button-set-token {
-        @include button($primary-color, $secondary-color);
+        margin-top: 10px;
+        @include button($primary-color, white);
+    }
+}
+
+::v-deep {
+    .btn-secondary {
+        @include button($primary-color, white);
     }
 }
 </style>
