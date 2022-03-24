@@ -15,8 +15,8 @@ export default {
   name: "App",
   components: {
     Navbar,
-    Subnavbar
-  }
+    Subnavbar,
+  },
 };
 </script>
 

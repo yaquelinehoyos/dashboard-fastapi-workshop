@@ -15,13 +15,13 @@ const routes = [
     name: "Items",
     component: () =>
       import(/* webpackChunkName: "items" */ "../views/Items/Index.vue"),
-  }
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

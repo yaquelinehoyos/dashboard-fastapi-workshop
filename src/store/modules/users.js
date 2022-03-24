@@ -5,12 +5,12 @@ export default {
   namespaced: true,
   state: {
     users: null,
-    userInfo: null
+    userInfo: null,
   },
   getters: {
     getUsers(state) {
       return state.users;
-    }
+    },
   },
   mutations: {
     setUsers(state, newUsers) {
@@ -18,22 +18,19 @@ export default {
     },
     setUserInfo(state, newUserInfo) {
       state.userInfo = newUserInfo;
-    }
+    },
   },
   actions: {
     async getUsers({ commit }) {
       let apiUrl = await getApiUrl();
       let params = {
         offset: 0,
-        limit: 100
+        limit: 100,
       };
       try {
-        let response = await axios.get(
-          apiUrl + `users/`,
-          {
-            params: params
-          }
-        );
+        let response = await axios.get(apiUrl + `users/`, {
+          params: params,
+        });
         if (response.status == 200) {
           commit("setUsers", response.data);
         }
@@ -46,9 +43,7 @@ export default {
     async getUserInfo({ commit }, userId) {
       let apiUrl = await getApiUrl();
       try {
-        let response = await axios.get(
-          apiUrl + `users/${userId}`
-        );
+        let response = await axios.get(apiUrl + `users/${userId}`);
         if (response.status == 200) {
           commit("setUserInfo", response.data);
         }
@@ -58,5 +53,15 @@ export default {
         return err.response;
       }
     },
-  }
+    async createUser(__, payload) {
+      let apiUrl = await getApiUrl();
+      try {
+        let response = await axios.post(apiUrl + `users/`, payload);
+        return response.data;
+      } catch (err) {
+        console.log(err);
+        return err.response;
+      }
+    },
+  },
 };
