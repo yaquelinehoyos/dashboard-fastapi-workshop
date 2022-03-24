@@ -1,6 +1,6 @@
 <template>
     <div class="navbar">
-        <h4 class="navbar__title">@tiangolo</h4>
+        <h4 class="navbar__title">Dashboard <b>FastAPI</b> Workshop</h4>
         <section>
             <input 
                 class="navbar__input-token"
@@ -38,12 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin default-components {
-    border-radius: 5px;
-    outline: none;
-    border: none;
-}
-
 .navbar {
     width: 100%;
     background-color: $secondary-color;
@@ -54,20 +48,15 @@ export default {
     }
 
     &__input-token {
-        @include default-components;
+        border-radius: 5px;
+        outline: none;
+        border: none;
         padding: 5px;
         margin-right: 10px;
     }
 
     &__button-set-token {
-        @include default-components;
-        background-color: $primary-color;
-        padding: 5px 10px;
-        color: $secondary-color;
-
-        &:hover {
-            background: rgba($primary-color, 0.7)
-        }
+        @include button($primary-color, $secondary-color);
     }
 }
 </style>

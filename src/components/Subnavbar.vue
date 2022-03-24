@@ -13,7 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 .subnavbar {
-    background-color: $secondary-color;
+    background-color: rgba($secondary-color, .7);
     color: white;
     padding: 0px 10px;
     width: 100%;

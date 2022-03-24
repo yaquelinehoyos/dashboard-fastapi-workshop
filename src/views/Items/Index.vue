@@ -13,6 +13,6 @@ export default {
 
 <style lang="scss" scoped>
 .items {
-  margin-top: $margin-top-view;
+  margin: $margin-view;
 }
 </style>
