@@ -7,8 +7,32 @@
     <div v-if="showInfo">
       <h6>Is active: {{ fullUserInfo.is_active }}</h6>
       <hr />
-      <div v-if="fullUserInfo.items.length != 0">
+      <div class="user-card__header">
         <h6>Items:</h6>
+        <b-dropdown ref="dropdown" text="Create new Item">
+          <b-dropdown-form>
+            <b-form-group>
+              <b-form-input
+                class="create-item-input"
+                placeholder="title"
+                v-model="newItem.title"
+              ></b-form-input>
+                <b-form-input
+                class="create-item-input"
+                placeholder="description"
+                v-model="newItem.description"
+              ></b-form-input>
+              <div class="create-item-button">
+                <button @click="createItem">
+                  Create
+                </button>
+              </div>
+            </b-form-group>
+          </b-dropdown-form>
+        </b-dropdown>
+      </div>
+
+      <template v-if="fullUserInfo.items.length != 0">
         <div
           class="user-card__item"
           v-for="item in fullUserInfo.items"
@@ -17,10 +41,11 @@
           <h6>Title: {{ item.title }}</h6>
           <h6>Description: {{ item.description }}</h6>
         </div>
-      </div>
-      <div v-else>
+      </template>
+      
+      <template v-else>
         <h6>This user does not have any items</h6>
-      </div>
+      </template>
     </div>
     <div class="user-card__options">
       <!-- <button class="user-card__options--delete">Delete</button>
@@ -56,6 +81,11 @@ export default {
     return {
       showInfo: false,
       fullUserInfo: null,
+      createItemUser: false,
+      newItem: {
+        title: null,
+        description: null
+      }
     };
   },
   methods: {
@@ -66,6 +96,12 @@ export default {
       );
       this.showInfo = true;
     },
+    async createItem() {
+      let payload = {};
+      payload.userId = this.user.id
+      payload.newItem = this.newItem;
+      await this.$store.dispatch("items/createItem", payload);
+    }
   },
 };
 </script>
@@ -79,6 +115,20 @@ export default {
     border: 0.5px solid #d1d1d1;
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__header {
+
+    h6 {
+      margin: 0;
+    }
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
   }
 
@@ -118,6 +168,21 @@ export default {
         text-decoration: underline;
       }
     }
+  }
+}
+
+.create-item-input {
+  width: 300px;
+  margin: 10px 0px;
+}
+
+.create-item-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    @include button($primary-color, white);
   }
 }
 </style>

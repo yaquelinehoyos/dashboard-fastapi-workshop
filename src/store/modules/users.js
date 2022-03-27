@@ -34,7 +34,7 @@ export default {
         if (response.status == 200) {
           commit("setUsers", response.data);
         }
-        return response.data;
+        return response;
       } catch (err) {
         console.log(err);
         return err.response;
