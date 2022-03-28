@@ -1,7 +1,7 @@
 <template>
   <div class="subnavbar">
     <router-link to="/"><b>USERS</b></router-link>
-    <router-link to="/items"><b>ITEMS</b></router-link>
+    <router-link to="/items"><b>ALL ITEMS</b></router-link>
   </div>
 </template>
 

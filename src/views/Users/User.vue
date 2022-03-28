@@ -100,6 +100,9 @@ export default {
       payload.newItem = this.newItem;
       await this.$store.dispatch("items/createItem", payload);
       await this.showUserInfo();
+      this.$refs.dropdown.hide(true);
+      this.newItem.title = null;
+      this.newItem.description = null;
     },
   },
 };
