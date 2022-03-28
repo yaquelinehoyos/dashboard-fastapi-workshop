@@ -23,16 +23,16 @@
                 v-model="newItem.description"
               ></b-form-input>
               <div class="create-item-button">
-                <button @click="createItem">
+                <b-button @click="createItem">
                   Create
-                </button>
+                </b-button>
               </div>
             </b-form-group>
           </b-dropdown-form>
         </b-dropdown>
       </div>
 
-      <template v-if="fullUserInfo.items.length != 0">
+      <template v-if="fullUserInfo.items && fullUserInfo.items.length != 0">
         <div
           class="user-card__item"
           v-for="item in fullUserInfo.items"
@@ -101,6 +101,7 @@ export default {
       payload.userId = this.user.id
       payload.newItem = this.newItem;
       await this.$store.dispatch("items/createItem", payload);
+      await this.showUserInfo()
     }
   },
 };

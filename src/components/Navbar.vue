@@ -9,10 +9,11 @@
             id="tokenInput"
             placeholder="token"
             v-model="token"
+            v-on:keyup.enter="setToken"
           ></b-form-input>
-          <button class="navbar__button-set-token" @click="setToken">
+          <b-button class="navbar__button-set-token" @click="setToken">
             Set token
-          </button>
+          </b-button>
         </b-form-group>
 
         <b-dropdown-divider></b-dropdown-divider>
@@ -23,10 +24,11 @@
             id="apiUrlInput"
             placeholder="http://127.0.0.1:8000/"
             v-model="apiUrl"
+            v-on:keyup.enter="setApiUrl"
           ></b-form-input>
-          <button class="navbar__button-set-token" @click="setApiUrl">
+          <b-button class="navbar__button-set-token" @click="setApiUrl">
             Set API URL
-          </button>
+          </b-button>
         </b-form-group>
       </b-dropdown-form>
     </b-dropdown>
@@ -51,11 +53,13 @@ export default {
       if (this.token != null && this.token != "") {
         localStorage.setItem("workshop-fastapi", this.token);
       }
+      location.reload();
     },
     setApiUrl() {
       if (this.apiUrl != null && this.apiUrl != "") {
         localStorage.setItem("workshop-fastapi-api-url", this.apiUrl);
       }
+      location.reload();
     },
   },
 };

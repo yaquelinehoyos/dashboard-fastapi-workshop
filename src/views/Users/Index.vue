@@ -10,9 +10,9 @@
               v-model="username"
               v-on:keyup.enter="createUser"
             ></b-form-input>
-            <button class="users__create-user-button" @click="createUser">
+            <b-button class="users__create-user-button" @click="createUser">
               Create
-            </button>
+            </b-button>
           </b-form-group>
         </b-dropdown-form>
       </b-dropdown>
