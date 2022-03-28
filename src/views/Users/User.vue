@@ -17,15 +17,13 @@
                 placeholder="title"
                 v-model="newItem.title"
               ></b-form-input>
-                <b-form-input
+              <b-form-input
                 class="create-item-input"
                 placeholder="description"
                 v-model="newItem.description"
               ></b-form-input>
               <div class="create-item-button">
-                <b-button @click="createItem">
-                  Create
-                </b-button>
+                <b-button @click="createItem"> Create </b-button>
               </div>
             </b-form-group>
           </b-dropdown-form>
@@ -42,7 +40,7 @@
           <h6>Description: {{ item.description }}</h6>
         </div>
       </template>
-      
+
       <template v-else>
         <h6>This user doesn't have any items</h6>
       </template>
@@ -84,8 +82,8 @@ export default {
       createItemUser: false,
       newItem: {
         title: null,
-        description: null
-      }
+        description: null,
+      },
     };
   },
   methods: {
@@ -98,11 +96,11 @@ export default {
     },
     async createItem() {
       let payload = {};
-      payload.userId = this.user.id
+      payload.userId = this.user.id;
       payload.newItem = this.newItem;
       await this.$store.dispatch("items/createItem", payload);
-      await this.showUserInfo()
-    }
+      await this.showUserInfo();
+    },
   },
 };
 </script>
@@ -120,7 +118,6 @@ export default {
   }
 
   &__header {
-
     h6 {
       margin: 0;
     }
