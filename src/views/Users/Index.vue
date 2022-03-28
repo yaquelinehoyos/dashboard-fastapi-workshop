@@ -43,8 +43,8 @@ export default {
   },
   async created() {
     let response = await this.$store.dispatch("users/getUsers");
-    if(response.status == 200) {
-      this.users =  response.data;
+    if (response.status == 200) {
+      this.users = response.data;
     }
     this.showData = true;
   },

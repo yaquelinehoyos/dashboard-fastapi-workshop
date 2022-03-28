@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <h4 class="navbar__title">Dashboard <b>FastAPI</b> Workshop</h4>
-    <b-dropdown id="dropdown-form" dropleft ref="dropdown" text="Set data">
+    <b-dropdown id="dropdown-form" dropleft ref="dropdown" text="Configuration">
       <b-dropdown-form>
         <b-form-group>
           <b-form-input
