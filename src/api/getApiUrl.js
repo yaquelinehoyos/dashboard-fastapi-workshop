@@ -3,6 +3,6 @@ export function getApiUrl() {
   if (apiUrl) {
     return apiUrl;
   } else {
-    ("http://127.0.0.0:8000/");
+    return ("http://127.0.0.1:8000/");
   }
 }
