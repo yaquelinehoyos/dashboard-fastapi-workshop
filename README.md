@@ -1,5 +1,7 @@
 # code-tiangolo
 
+This is the Admin Dashboard for the FastAPI Workshop: https://code.tiangolo.com/python-tutorials/fastapi-workshop/
+
 ## Project setup
 ```
 npm install
