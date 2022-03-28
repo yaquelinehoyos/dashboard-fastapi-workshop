@@ -1,5 +1,5 @@
 <template>
-  <div class="users">
+  <div class="users" v-if="showData">
     <div class="users__add-user">
       <b-dropdown dropright ref="dropdown" text="Create new User">
         <b-dropdown-form>
@@ -36,6 +36,7 @@ export default {
   },
   data() {
     return {
+      showData: false,
       users: [],
       username: null,
     };
@@ -45,6 +46,7 @@ export default {
     if(response.status == 200) {
       this.users =  response.data;
     }
+    this.showData = true;
   },
   methods: {
     async createUser() {

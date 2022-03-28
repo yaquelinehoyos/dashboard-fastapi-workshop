@@ -44,7 +44,7 @@
       </template>
       
       <template v-else>
-        <h6>This user does not have any items</h6>
+        <h6>This user doesn't have any items</h6>
       </template>
     </div>
     <div class="user-card__options">
